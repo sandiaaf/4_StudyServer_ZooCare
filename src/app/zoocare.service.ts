@@ -32,10 +32,22 @@ export class ZoocareService {
   }
 
   classList(): Observable<any> {
-
+      return this.http.get("");
   }
 
-  addAnimal(p_id:number, p_name:string, p_species::string, p_image:string, p_class_id:number){
+  animalList(): Observable<any> {
+    return this.http.get("");
+  }
+
+  keeperList(): Observable<any> {
+    return this.http.get("");
+  }
+
+  cariAnimal(nClass:string): Observable<any> {
+    return this.http.get("");
+  }
+
+  addAnimal(p_id:number, p_name:string, p_species:string, p_image:string, p_class_id:number){
 
   }
 
