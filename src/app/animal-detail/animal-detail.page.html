@@ -1,0 +1,56 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Animal Detail</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Animal Detail</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-card>
+    <ion-card-content>
+            <div *ngFor="let m of menus">
+                <ion-item *ngIf="m.animal_id==idanimal" [button]="true">
+                    <!-- <ion-thumbnail slot="start">
+                        <img alt="Silhouette of mountains" [src]="story.url" />
+                    </ion-thumbnail> -->
+                    <ion-label>
+                      <ion-card-title *ngIf="m.name!='sakit'" slot="start">Jam Makan</ion-card-title>
+                      <ion-card-title *ngIf="m.name!='sakit'" slot="end">{{m.feed_time}} </ion-card-title>
+                      <p>Menu:</p>
+                      <div *ngFor="let c of consumtions">
+                        <ion-item>
+                          <ion-label slot="start">{{c.name}}</ion-label>
+                          <ion-label *ngIf="c.type=='makanan'" slot="end">{{c.quantity}} Kg</ion-label>
+                          <ion-label *ngIf="c.type=='minuman'" slot="end">{{c.quantity}} L</ion-label>
+                        </ion-item>
+                      </div>
+                      <p>Menu Sakit:</p>
+                      <div *ngIf="m.name=='sakit'">
+                        <div *ngFor="let c of consumtions">
+                          <ion-item>
+                            <ion-label slot="start">{{c.name}}</ion-label>
+                            <ion-label *ngIf="c.type=='makanan'" slot="end">{{c.quantity}} Kg</ion-label>
+                            <ion-label *ngIf="c.type=='minuman'" slot="end">{{c.quantity}} L</ion-label>
+                          </ion-item>
+                        </div>
+                      </div>
+                    </ion-label>
+
+                    <ion-card>
+                      <ion-card-header>
+                        <ion-card-title>Vitamin</ion-card-title>
+                      </ion-card-header>
+                      <div *ngFor="let v of vitamins">
+                        <ion-card-subtitle>{{v.name}}</ion-card-subtitle>
+                        <ion-card-content>{{v.info}}</ion-card-content>
+                      </div>
+                    </ion-card>
+                </ion-item>
+            </div>
+    </ion-card-content>
+</ion-card>
+</ion-content>

@@ -44,7 +44,7 @@ export class AnimalsPage implements OnInit {
     this.idAkun = this.appcomponent.idAkun
   }
   
-  toCerbungRead(id:number){
+  toDetailAnimal(id:number){
     return this.pathdetailanimal="/animal-detail/"+id;
   }
 
