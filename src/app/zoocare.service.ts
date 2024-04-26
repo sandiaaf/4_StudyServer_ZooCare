@@ -30,4 +30,14 @@ export class ZoocareService {
     return this.http.post(
       "https://ubaya.me/hybrid/160421110/cerbung/new_account.php", urlEncodedData, { headers });
   }
+
+  classList(): Observable<any> {
+
+  }
+
+  addAnimal(p_id:number, p_name:string, p_species::string, p_image:string, p_class_id:number){
+
+  }
+
+  
 }

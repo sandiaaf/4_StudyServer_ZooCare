@@ -24,16 +24,16 @@ export class AppComponent {
     this.img=localStorage.getItem("app_img") ?? ''
   }
   ngOnInit(){
-    this.checkTheme()
+    // this.checkTheme()
     this.checkLogin()
   }
-  checkTheme(){
-    const validasi=localStorage.getItem("app_dark")
-    if(validasi=="true"){
-      document.body.classList.toggle("dark", true)
-      this.isDark=true
-    }
-  }
+  // checkTheme(){
+  //   const validasi=localStorage.getItem("app_dark")
+  //   if(validasi=="true"){
+  //     document.body.classList.toggle("dark", true)
+  //     this.isDark=true
+  //   }
+  // }
   checkLogin(){
     if(localStorage.getItem("app_login")=="true"){
       this.login=true

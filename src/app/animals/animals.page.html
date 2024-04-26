@@ -10,4 +10,36 @@
       <ion-title size="large">Animals</ion-title>
     </ion-toolbar>
   </ion-header>
+  <div class="container">
+    <ion-input [(ngModel)]="name" (keyup)="cariAnimal()" label="Search" label-placement="floating" fill="outline" placeholder="Enter text"></ion-input>
+  </div>
+  <ion-item id="class">
+      <ion-button id="btnClass" (click)="classClick('All')">All</ion-button>
+      <ion-button *ngFor="let class of classes" id="btnClass" (click)="classClick(class)">{{class}}</ion-button>
+  </ion-item>
+  <div class="containerCard" *ngFor="let animal of animals">
+      <ion-card *ngIf="classStatus=='All' || animal.class.includes(classStatus)">
+          <img alt="" [src]="animal.image" />
+          <ion-card-header>
+              <ion-card-title>{{animal.name}}</ion-card-title>
+              <ion-card-subtitle>by {{animal.species}}</ion-card-subtitle>
+              <!-- <ion-item class="ion-no-padding">
+                  <ion-button class="buttonBar" size="default" fill="clear">
+                      <ion-icon class="iconBarLike" name="list-outline"></ion-icon>
+                      <ion-label>{{totalParagraph(story.id)}}</ion-label>
+                  </ion-button>
+                  <ion-button class="buttonLike" size="default" fill="clear">
+                      <ion-icon class="iconBarLike" size="default" name="thumbs-up"></ion-icon>
+                      <ion-label>{{story.total_like}}</ion-label>
+                  </ion-button>
+              </ion-item> -->
+          </ion-card-header>
+          <!-- <ion-card-content>
+              {{animal.description}}
+          </ion-card-content> -->
+          <ion-item id="detailItem">
+              <ion-button shape="round" size="default" slot="end" [routerLink]="toDetailAnimal(animal.id)">Detail</ion-button>
+          </ion-item>
+      </ion-card>
+  </div>
 </ion-content>
