@@ -77,8 +77,18 @@
                       <ion-card-title color="primary">Sign Up</ion-card-title>
                   </ion-card-header>
                   <ion-card-content class="ion-no-padding">
+                      <ion-input [(ngModel)]="firstName" class="ion-margin-bottom" label="First Name" labelPlacement="floating" fill="outline" placeholder="Enter text"></ion-input>
+                      <ion-input [(ngModel)]="lastName" class="ion-margin-bottom" label="Last Name" labelPlacement="floating" fill="outline" placeholder="Enter text"></ion-input>
                       <ion-input [(ngModel)]="username" class="ion-margin-bottom" label="Username" labelPlacement="floating" fill="outline" placeholder="Enter text"></ion-input>
-                      <ion-input [(ngModel)]="img" class="ion-margin-bottom" label="Profile Picture URL" labelPlacement="floating" fill="outline" placeholder="Enter text"></ion-input>
+                      <ion-input [(ngModel)]="email" class="ion-margin-bottom" label="Email" labelPlacement="floating" fill="outline" placeholder="Enter text"></ion-input>
+                      <ion-input [(ngModel)]="phoneNumber" class="ion-margin-bottom" label="Phone Number" labelPlacement="floating" fill="outline" placeholder="Enter text"></ion-input>
+                      <ion-select [(ngModel)]="headKeeper" label="Head Keeper" labelplacement="floating" placeholder="Don't fill out if you are a Head Keeper">
+                        <ion-select-option *ngFor="let headkeeper of headkeepers" [value]="headkeeper.id">{{headkeeper.full_name}}</ion-select-option>
+                      </ion-select>
+                      <ion-select [(ngModel)]="jobClass" label="Animal Class" labelplacement="floating" placeholder="Pick Animal Class">
+                        <ion-select-option *ngFor="let class of classes" [value]="class.id">{{class.name}}</ion-select-option>
+                      </ion-select>
+                      <!-- <ion-input [(ngModel)]="img" class="ion-margin-bottom" label="Profile Picture URL" labelPlacement="floating" fill="outline" placeholder="Enter text"></ion-input> -->
                       <ion-input [(ngModel)]="pass" class="ion-margin-bottom" label="Password" labelPlacement="floating" fill="outline" placeholder="Enter text"></ion-input>
                       <ion-input [(ngModel)]="repass" label="Retype Password" labelPlacement="floating" fill="outline" placeholder="Enter text"></ion-input>
                       <ion-button class="ion-no-padding" size="small" shape="round" fill="clear" (click)="showSignIn()">

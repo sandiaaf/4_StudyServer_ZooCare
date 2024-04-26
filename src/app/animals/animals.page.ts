@@ -66,6 +66,10 @@ export class AnimalsPage implements OnInit {
   }
   pathNotif(idAkun:number){
     return "notifications/home"
-  }  
+  }
+
+  classClick(tes:string) {
+    
+  }
 }
 

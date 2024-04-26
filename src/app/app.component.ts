@@ -12,8 +12,17 @@ export class AppComponent {
   isDark=false
   formSignUp = false
   idAkun=0
+  headkeepers:any[] = []
+  classes:any[] = []
+
+  firstName = ""
+  lastName = ""
   username = ""
-  img = ""
+  email = ""
+  phoneNumber = ""
+  headKeeper = 0
+  jobClass = 0
+  // img = ""
   pass = ""
   repass = ""
   
@@ -21,10 +30,20 @@ export class AppComponent {
     let idAkunString=localStorage.getItem("app_id") ?? ''
     this.idAkun= parseInt(idAkunString)
     this.username=localStorage.getItem("app_username") ?? ''
-    this.img=localStorage.getItem("app_img") ?? ''
+    // this.img=localStorage.getItem("app_img") ?? ''
   }
   ngOnInit(){
     // this.checkTheme()
+    this.zoocareservice.get_headkeeper_data().subscribe(
+      (data)=> {
+        this.headkeepers = data
+      }
+    )
+    this.zoocareservice.get_animalclass_data().subscribe(
+      (data)=> {
+        this.classes = data
+      }
+    )
     this.checkLogin()
   }
   // checkTheme(){
@@ -51,12 +70,12 @@ export class AppComponent {
              if(response.result==='success'){
                this.login = true;
                this.idAkun=response.id
-               this.img=response.img
+              //  this.img=response.img
 
                localStorage.setItem("app_login","true")
                localStorage.setItem("app_id",this.idAkun.toString())
-               localStorage.setItem("app_username",this.username)
-               localStorage.setItem("app_img",this.img)
+               localStorage.setItem("app_username",response.username)
+              //  localStorage.setItem("app_img",this.img)
                
                alert("success")
               }
@@ -74,7 +93,7 @@ export class AppComponent {
   }
   
   signUp(){
-    if(this.username==""||this.pass==""||this.repass==""||this.img==""){
+    if(this.firstName=="" || this.lastName=="" || this.username==""|| this.email=="" || this.pass==""||this.repass=="" || this.phoneNumber==""){
       this.presentAlert("The data entered cannot be empty!")
     }
     else{
@@ -83,12 +102,14 @@ export class AppComponent {
       // console.log(this.new_date)
       if(this.pass==this.repass){
         this.zoocareservice.addAccount(
+          this.firstName,
+          this.lastName,
           this.username,
-          this.pass,
-          this.img,
-          new_date
-
-    
+          this.email,
+          this.phoneNumber,
+          this.headKeeper,
+          this.jobClass,
+          this.pass
         ).subscribe((response: any) => {
           if (response.result === 'success') {
             this.presentAlert("Sign Up successfully!")
@@ -113,10 +134,16 @@ export class AppComponent {
   {
     this.login=false
     this.idAkun=0
-    this.username=""
+    this.firstName = ""
+    this.lastName = ""
+    this.username = ""
+    this.email = ""
+    this.phoneNumber = ""
+    this.headKeeper = 0
+    this.jobClass = 0
     this.pass=""
     this.repass=""
-    this.img=""
+    // this.img=""
     localStorage.removeItem("app_login")
     localStorage.removeItem("app_id")
     localStorage.removeItem("app_username")
