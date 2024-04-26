@@ -16,7 +16,7 @@ export class ZoocareService {
     body.set('password', p_password);
     const urlEncodedData = body.toString();
     return this.http.post(
-      "https://ubaya.me/hybrid/160421110/cerbung/login.php", urlEncodedData, { headers });
+      "https://localhost/zoocaredb/login.php", urlEncodedData, { headers });
   }
   addAccount(p_username:string, p_pass:string, p_image:string, p_date:string){
     const headers = new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded' });
@@ -28,23 +28,29 @@ export class ZoocareService {
 
     const urlEncodedData = body.toString();
     return this.http.post(
-      "https://ubaya.me/hybrid/160421110/cerbung/new_account.php", urlEncodedData, { headers });
+      "https://localhost/zoocaredb/new_account.php", urlEncodedData, { headers });
   }
 
   classList(): Observable<any> {
-      return this.http.get("");
+      return this.http.get("https://localhost/zoocaredb/new_account.php");
   }
 
   animalList(): Observable<any> {
-    return this.http.get("");
+    return this.http.get("https://localhost/zoocaredb/animals.php");
+  }
+  menuList(): Observable<any> {
+    return this.http.get("https://localhost/zoocaredb/menus.php");
+  }
+  vitaminList(): Observable<any> {
+    return this.http.get("https://localhost/zoocaredb/vitamins.php");
   }
 
   keeperList(): Observable<any> {
-    return this.http.get("");
+    return this.http.get("https://localhost/zoocaredb/keepers.php");
   }
 
-  cariAnimal(nClass:string): Observable<any> {
-    return this.http.get("");
+  cariAnimal(name:string): Observable<any> {
+    return this.http.get("https://localhost/zoocaredb/cari_animal.php?name="+name);
   }
 
   addAnimal(p_id:number, p_name:string, p_species:string, p_image:string, p_class_id:number){
