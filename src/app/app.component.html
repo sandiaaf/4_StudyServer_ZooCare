@@ -1,3 +1,97 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+  <ion-router-outlet id="main-content"></ion-router-outlet>
+  <ion-tabs *ngIf="login">
+      <ion-tab-bar slot="bottom">
+          <ion-tab-button tab="home">
+              <ion-icon name="home"></ion-icon>
+              Home
+          </ion-tab-button>
+          <ion-tab-button tab="animals">
+              <ion-icon name="bar-chart"></ion-icon>
+              Animals
+          </ion-tab-button>
+          <ion-tab-button tab="keepers">
+              <ion-icon name="people"></ion-icon>
+              Keepers
+          </ion-tab-button>
+      </ion-tab-bar>
+  </ion-tabs>
+
+  <ion-menu *ngIf="login" auto-hide="true" content-id="main-content">
+      <ion-header>
+          <ion-toolbar>
+              <ion-title>Menu List</ion-title>
+          </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+          <ion-list>
+              <ion-menu-toggle>
+                  <ion-item routerLink="home">
+                      <ion-icon name="home" slot="start"></ion-icon>
+                      <ion-label>Home</ion-label>
+                  </ion-item>
+              </ion-menu-toggle>
+              <ion-menu-toggle>
+                  <ion-item routerLink="animals">
+                      <ion-icon name="bar-chart" slot="start"></ion-icon>
+                      <ion-label>Animals</ion-label>
+                  </ion-item>
+              </ion-menu-toggle>
+              <ion-menu-toggle>
+                  <ion-item routerLink="keepers">
+                      <ion-icon name="people" slot="start"></ion-icon>
+                      <ion-label>Keepers</ion-label>
+                  </ion-item>
+              </ion-menu-toggle>
+          </ion-list>
+      </ion-content>
+  </ion-menu>
+  <ion-content *ngIf="!login" class="ion-padding">
+      <ion-header collapse="condense"></ion-header>
+      <div *ngIf="!formSignUp">
+          <div class="container">
+              <ion-card class="ion-padding">
+                  <ion-card-header class="ion-text-center">
+                      <ion-card-title color="primary">Sign In</ion-card-title>
+                  </ion-card-header>
+                  <ion-card-content class="ion-no-padding">
+                      <ion-input [(ngModel)]="username" class="ion-margin-bottom" label="Username" labelPlacement="floating" fill="outline" placeholder="Enter text"></ion-input>
+                      <ion-input [(ngModel)]="pass" class="ion-margin-bottom" label="Password" labelPlacement="floating" fill="outline" placeholder="Enter text"></ion-input>
+                      <ion-input [(ngModel)]="repass" label="Retype Password" labelPlacement="floating" fill="outline" placeholder="Enter text"></ion-input>
+                      <ion-button class="ion-no-padding" size="small" shape="round" fill="clear" (click)="showSignUp()">
+                          Don't have an account?
+                      </ion-button>
+                  </ion-card-content>
+                  <ion-card-content class="ion-text-center">
+                      <ion-button id="signInBtn" (click)="signIn()">
+                          Sign In
+                      </ion-button>
+                  </ion-card-content>
+              </ion-card>
+          </div>
+      </div>
+      <div *ngIf="formSignUp">
+          <div class="container">
+              <ion-card class="ion-padding">
+                  <ion-card-header class="ion-text-center">
+                      <ion-card-title color="primary">Sign Up</ion-card-title>
+                  </ion-card-header>
+                  <ion-card-content class="ion-no-padding">
+                      <ion-input [(ngModel)]="username" class="ion-margin-bottom" label="Username" labelPlacement="floating" fill="outline" placeholder="Enter text"></ion-input>
+                      <ion-input [(ngModel)]="img" class="ion-margin-bottom" label="Profile Picture URL" labelPlacement="floating" fill="outline" placeholder="Enter text"></ion-input>
+                      <ion-input [(ngModel)]="pass" class="ion-margin-bottom" label="Password" labelPlacement="floating" fill="outline" placeholder="Enter text"></ion-input>
+                      <ion-input [(ngModel)]="repass" label="Retype Password" labelPlacement="floating" fill="outline" placeholder="Enter text"></ion-input>
+                      <ion-button class="ion-no-padding" size="small" shape="round" fill="clear" (click)="showSignIn()">
+                          Do you have an account?
+                      </ion-button>
+                  </ion-card-content>
+                  <ion-card-content class="ion-text-center">
+                      <ion-button shape="round" (click)="signUp()">
+                          Sign Up
+                      </ion-button>
+                  </ion-card-content>
+              </ion-card>
+          </div>
+      </div>
+  </ion-content>
 </ion-app>
