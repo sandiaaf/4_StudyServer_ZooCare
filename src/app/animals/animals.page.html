@@ -23,14 +23,18 @@
   </ion-item>
   <div class="containerCard" *ngFor="let animal of animals">
       <ion-card *ngIf="classStatus=='All' || classA(animal.animal_class_id).includes(classStatus)">
-          <img alt="" [src]="animal.image" />
+        <ion-item>
+          <ion-thumbnail slot="start">
+            <img alt="Silhouette of mountains" [src]="animal.image" />
+          </ion-thumbnail>
           <ion-card-header>
               <ion-card-title>{{animal.name}}</ion-card-title>
               <ion-card-subtitle>{{animal.species}}</ion-card-subtitle>
           </ion-card-header>
-          <ion-item id="detailItem">
+          <ion-item slot="end" id="detailItem">
               <ion-button shape="round" size="default" slot="end" [routerLink]="toDetailAnimal(animal.id)">Detail</ion-button>
           </ion-item>
+        </ion-item>
       </ion-card>
   </div>
 </ion-content>

@@ -15,7 +15,6 @@ export class DetailExhibitPage implements OnInit {
   isHeadStr= ""
   isHead= true
 
-  alreadySubmit = false
   image=""
 
   isModalOpen = false;
@@ -104,7 +103,6 @@ export class DetailExhibitPage implements OnInit {
       ).subscribe((response: any) => {
         if (response.result === 'success') {
           alert("success")
-          this.alreadySubmit = true
         }
         else {
           alert(response.message)

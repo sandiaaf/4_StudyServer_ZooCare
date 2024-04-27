@@ -76,8 +76,8 @@
             <ion-input  [(ngModel)]="image" label="Url Image" labelPlacement="floating" placeholder="Enter text"></ion-input>
           </ion-item>
           <ion-item>
-            <ion-button *ngIf="btnOpen" shape="round" size="default" (click)="submit(s.id,s.hour)">Submit</ion-button>
-            <ion-button *ngIf="!btnOpen" shape="round"  size="default" [disabled]="true">Done</ion-button>
+            <ion-button shape="round" size="default" (click)="submit(s.id,s.hour)">Submit</ion-button>
+            <ion-button shape="round"  size="default" [disabled]="true">Done</ion-button>
           </ion-item>
         </ion-list>
       </div>
