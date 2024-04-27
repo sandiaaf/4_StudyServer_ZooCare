@@ -1,33 +1,35 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>Keepers</ion-title>
+    <ion-title *ngIf="isHead">Keepers (Head)</ion-title>
+    <ion-title *ngIf="!isHead">Keepers</ion-title>
+
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Keepers</ion-title>
+      <ion-title *ngIf="isHead" size="large">Keepers (Head)</ion-title>
+      <ion-title *ngIf="!isHead" size="large">Keepers</ion-title>
+
     </ion-toolbar>
   </ion-header>
-
-  <div class="containerCard" *ngFor="let keeper of keepers">
-    <ion-card>
-      <ion-card-header>
-        <ion-card-title>{{keeper.first_name + " " + keeper.last_name}}</ion-card-title>
-        <ion-card-subtitle>{{keeper.phone_number}}</ion-card-subtitle>
-      </ion-card-header>
-      <ion-item>
-        <ion-button routerLink="/keeper-detail/{{keeper.id}}" shape="round" >
-          Detail Makan
-        </ion-button>
-        <ion-button class="ion-margin-start" routerLink="/detail-exhibit/{{keeper.id}}" shape="round" >
-          Detail Penangkaran
-        </ion-button>
-        <ion-button class="ion-margin-start" routerLink="/detail-vitamin/{{keeper.id}}" shape="round" >
-          Detail Vitamin
-        </ion-button>
-      </ion-item>
-    </ion-card>
+  <div class="">
+    <div class="containerCard" *ngFor="let keeper of keepers">
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>{{keeper.first_name + " " + keeper.last_name}}</ion-card-title>
+          <ion-card-subtitle>{{keeper.phone_number}}</ion-card-subtitle>
+        </ion-card-header>
+        <ion-item>
+          <ion-button routerLink="/keeper-detail/{{keeper.id}}" shape="round" >
+            Detail Makan
+          </ion-button>
+          <ion-button class="ion-margin-start" routerLink="/detail-exhibit/{{keeper.id}}" shape="round" >
+            Detail Penangkaran
+          </ion-button>
+        </ion-item>
+      </ion-card>
+    </div>
   </div>
 </ion-content>

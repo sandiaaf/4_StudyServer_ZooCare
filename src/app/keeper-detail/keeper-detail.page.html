@@ -14,24 +14,69 @@
     <ion-card-header>
       <ion-card-title>Jadwal Makan</ion-card-title>
     </ion-card-header>
-    <div *ngFor="let s of schedules">
-      <ion-list>
-        <ion-item>
-          <ion-label slot="start">
-            <h2>- {{s.name}}</h2>
-            <p>{{s.species}}</p>
-          </ion-label>
-          <ion-label slot="end">
-            {{s.hour}} WIB
-          </ion-label>
-        </ion-item>
-        <ion-item>
-          <ion-input label="Url Image" labelPlacement="floating" placeholder="Enter text"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-button shape="round" size="default">Submit</ion-button>
-        </ion-item>
-      </ion-list>
+    <div class="" *ngIf="isHead">
+      <div *ngFor="let s of schedules">
+        <ion-list>
+          <ion-item>
+            <ion-label slot="start">
+              <h2>- {{s.name}}</h2>
+              <p>{{s.species}}</p>
+            </ion-label>
+            <ion-label slot="end">
+              <h2>
+                {{s.hour}} WIB
+              </h2>
+              <ion-label>
+
+                <ion-button id="btnOpen" shape="round" size="small" (click)="setOpen(true)">Open Image</ion-button>
+                <ion-modal [isOpen]="isModalOpen">
+                  <ng-template>
+                    <ion-header>
+                      <ion-toolbar>
+                        <ion-title>Image</ion-title>
+                        <ion-buttons slot="end">
+                          <ion-button (click)="setOpen(false)">Close</ion-button>
+                        </ion-buttons>
+                      </ion-toolbar>
+                    </ion-header>
+                    <ion-content class="ion-padding">
+                      <div class="image">
+                        <img src="https://www.borneonews.co.id/images/upload/2022/06/26/1656220467-untitled-1.jpg" alt="">
+                      </div>
+                    </ion-content>
+                  </ng-template>
+                </ion-modal>
+
+              </ion-label>
+            </ion-label>
+          </ion-item>
+
+          <ion-button id="btnStat" shape="round" expand="block"  size="default">Status</ion-button>
+
+        </ion-list>
+      </div>
+    </div>
+    
+    <div class="" *ngIf="!isHead">
+      <div *ngFor="let s of schedules">
+        <ion-list>
+          <ion-item>
+            <ion-label slot="start">
+              <h2>- {{s.name}}</h2>
+              <p>{{s.species}}</p>
+            </ion-label>
+            <ion-label slot="end">
+              {{s.hour}} WIB
+            </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-input label="Url Image" labelPlacement="floating" placeholder="Enter text"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-button shape="round" size="default">Submit</ion-button>
+          </ion-item>
+        </ion-list>
+      </div>
     </div>
   </ion-card>
 

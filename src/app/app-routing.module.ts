@@ -31,10 +31,7 @@ const routes: Routes = [
     path: 'detail-exhibit/:idkeeper',
     loadChildren: () => import('./detail-exhibit/detail-exhibit.module').then( m => m.DetailExhibitPageModule)
   },
-  {
-    path: 'detail-vitamin/:idkeeper',
-    loadChildren: () => import('./detail-vitamin/detail-vitamin.module').then( m => m.DetailVitaminPageModule)
-  },
+  
 
 
 ];

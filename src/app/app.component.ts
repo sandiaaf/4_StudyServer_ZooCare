@@ -72,9 +72,19 @@ export class AppComponent {
                this.idAkun=response.id
               //  this.img=response.img
 
-               localStorage.setItem("app_login","true")
-               localStorage.setItem("app_id",this.idAkun.toString())
-               localStorage.setItem("app_username",response.username)
+              localStorage.setItem("app_login","true")
+              localStorage.setItem("app_id",this.idAkun.toString())
+              localStorage.setItem("app_username",response.username)
+
+              for(let hk of this.headkeepers){
+                if(hk.id == this.idAkun){
+                  localStorage.setItem("app_ishead",'true')
+                  break
+                }
+                else{
+                  localStorage.setItem("app_ishead",'false')
+                }
+              }
               //  localStorage.setItem("app_img",this.img)
                
                alert("success")
