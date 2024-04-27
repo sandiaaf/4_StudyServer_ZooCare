@@ -1,6 +1,9 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>Home</ion-title>
+    <ion-title>Zookeeper's Guide</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button auto-hide="false"></ion-menu-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -10,4 +13,57 @@
       <ion-title size="large">Home</ion-title>
     </ion-toolbar>
   </ion-header>
+  <ion-card color="secondary">
+    <img alt="" [src]="" />
+    <ion-card-header>
+      <ion-card-title><b>Diagnosis</b></ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item>
+          <ion-checkbox [(ngModel)]="nafsuMakan" labelPlacement="start">Nafsu makan dan asupan air
+            berkurang</ion-checkbox>
+        </ion-item>
+        <ion-item>
+          <ion-checkbox [(ngModel)]="tingkatEnergi" labelPlacement="start">Tingkat energi dan aktivitas
+            berkurang</ion-checkbox>
+        </ion-item>
+        <ion-item>
+          <ion-checkbox [(ngModel)]="garuk" labelPlacement="start">Menggaruk atau menjilat badan secara
+            berlebihan</ion-checkbox>
+        </ion-item>
+        <ion-item>
+          <ion-checkbox [(ngModel)]="lesu" labelPlacement="start">Terlihat lesu</ion-checkbox>
+        </ion-item>
+        <ion-item>
+          <ion-checkbox [(ngModel)]="sulitNapas" labelPlacement="start">Terlihat kesulitan bernapas</ion-checkbox>
+        </ion-item>
+        <ion-item>
+          <ion-checkbox [(ngModel)]="agresif" labelPlacement="start">Terlihat lebih agresif atau kasar</ion-checkbox>
+        </ion-item>
+        <ion-button (click)="checkPrognosis()" expand="block" shape="round">
+          Check
+        </ion-button>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-accordion-group expand="inset">
+    <ion-accordion *ngFor="let guide of guides">
+      <ng-container *ngIf="guide.guide_name != 'Diagnosis'">
+        <ion-item slot="header">
+          <ion-label>{{guide.guide_name}}</ion-label>
+        </ion-item>
+        <div slot="content">
+          <ol>
+            <p *ngFor="let action of actions">
+              <ng-container *ngIf="action.guide_id == guide.id">
+                - {{action.action_name}}
+              </ng-container>
+            </p>
+          </ol>
+        </div>
+      </ng-container>
+    </ion-accordion>
+  </ion-accordion-group>
 </ion-content>
