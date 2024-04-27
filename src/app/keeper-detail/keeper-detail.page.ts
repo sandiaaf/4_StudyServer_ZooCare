@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ZoocareService } from '../zoocare.service';
 import { forkJoin } from 'rxjs';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-keeper-detail',
@@ -14,7 +15,7 @@ export class KeeperDetailPage implements OnInit {
   isHeadStr= ""
   isHead= true
 
-  image=""
+  id_activity=0
 
 
   
@@ -29,7 +30,10 @@ export class KeeperDetailPage implements OnInit {
   animalsNew:any[]=[]
   menus:any[]=[]
   schedules:any[]=[]
-  constructor(private route:ActivatedRoute,private zoocareservice: ZoocareService) { }
+  reports:any[]=[]
+
+
+  constructor(private elementRef: ElementRef,private route:ActivatedRoute,private zoocareservice: ZoocareService) { }
 
   ngOnInit() {
     this.isHeadStr=localStorage.getItem("app_ishead") ?? ''
@@ -55,6 +59,13 @@ export class KeeperDetailPage implements OnInit {
       
       this.getAnimalNew();
     });
+
+    this.zoocareservice.reportList().subscribe(
+      (data) => {
+        this.reports = data
+        
+      }
+    )
     
   }
 
@@ -75,14 +86,14 @@ export class KeeperDetailPage implements OnInit {
     for(let m of this.menus){
       for(let aa of this.animalsNew){
         if(m.animal_id==aa.id){
-          this.schedules.push({id:aa.id,name:aa.name,species:aa.species,hour:m.feed_time})
+          this.schedules.push({id:aa.id,name:aa.name,species:aa.species,hour:m.feed_time,input:null})
           break
         }
       }
     }
   }
-  submit(id_animal:number,hour:string){
-    if(this.image!=""){
+  submit(id_animal:number,hour:string,input:string){
+    if(input!=""){
       let dateTime = new Date().toJSON().slice(0, 19).replace('T', ' ');
 
       let new_hour = parseInt(hour.slice(0,2)) 
@@ -98,7 +109,7 @@ export class KeeperDetailPage implements OnInit {
       }
       this.zoocareservice.addReport(
         activity,
-        this.image,
+        input,
         activity_f,
         dateTime,
         this.idkeeper,
@@ -106,6 +117,7 @@ export class KeeperDetailPage implements OnInit {
       ).subscribe((response: any) => {
         if (response.result === 'success') {
           alert("success")
+          this.hideButton(id_animal)
           
         }
         else {
@@ -116,6 +128,12 @@ export class KeeperDetailPage implements OnInit {
     }
     else{
 
+    }
+  }
+  hideButton(id_s:number) {
+    const buttonToHide = document.getElementById(id_s.toString());
+    if (buttonToHide) {
+      buttonToHide.style.display = 'none';
     }
   }
 

@@ -15,8 +15,6 @@ export class DetailExhibitPage implements OnInit {
   isHeadStr= ""
   isHead= true
 
-  image=""
-
   isModalOpen = false;
   setOpen(isOpen: boolean) {
     this.isModalOpen = isOpen;
@@ -84,8 +82,8 @@ export class DetailExhibitPage implements OnInit {
       }
     }
   }
-  submit(id_animal:number){
-    if(this.image!=""){
+  submit(id_animal:number,input:string){
+    if(input!=""){
       let dateTime = new Date().toJSON().slice(0, 19).replace('T', ' ');
 
       console.log(dateTime)
@@ -95,7 +93,7 @@ export class DetailExhibitPage implements OnInit {
 
       this.zoocareservice.addReport(
         activity,
-        this.image,
+        input,
         activity_f,
         dateTime,
         this.idkeeper,
@@ -103,6 +101,8 @@ export class DetailExhibitPage implements OnInit {
       ).subscribe((response: any) => {
         if (response.result === 'success') {
           alert("success")
+          this.hideButton(id_animal)
+
         }
         else {
           alert(response.message)
@@ -112,6 +112,12 @@ export class DetailExhibitPage implements OnInit {
     }
     else{
 
+    }
+  }
+  hideButton(id_s:number) {
+    const buttonToHide = document.getElementById(id_s.toString());
+    if (buttonToHide) {
+      buttonToHide.style.display = 'none';
     }
   }
 
