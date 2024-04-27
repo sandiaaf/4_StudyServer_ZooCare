@@ -1,0 +1,64 @@
+#container {
+    text-align: center;
+    align-items: center;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
+
+#container strong {
+    font-size: 20px;
+    line-height: 26px;
+}
+
+#container p {
+    font-size: 16px;
+    line-height: 22px;
+    color: #8c8c8c;
+    margin: 0;
+}
+
+#container a {
+    text-decoration: none;
+}
+
+ion-input {
+    margin: 10px;
+}
+
+ion-item {
+    --border-style: none;
+    --background: none;
+}
+
+img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+}
+
+#class {
+    overflow-x: auto;
+    --background: none;
+    --border-style: none;
+}
+
+#btnClass {
+    margin-right: 10px;
+}
+
+#detailItem {
+    margin-bottom: 10px;
+}
+ion-card{
+    border-radius: 25px;
+}

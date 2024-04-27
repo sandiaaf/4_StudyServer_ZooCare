@@ -15,9 +15,9 @@ export class AnimalsPage implements OnInit {
 
   animals:any[] = []
   classes:any[] = []
-  // conts:any[] = []
+  classesNew:any[] = []
 
-  genreClick(validasi:string){
+  classClick(validasi:string){
     this.classStatus= validasi
     console.log(`Button "${validasi}" ditekan.`)
 
@@ -36,11 +36,11 @@ export class AnimalsPage implements OnInit {
       }
     );
 
-    // this.cerbungservice.paragraphList().subscribe(
-    //   (data) => {
-    //     this.conts = data;
-    //   }
-    // );
+    this.zoocareservice.classList().subscribe(
+      (data) => {
+        this.classesNew = data;
+      }
+    );
     this.idAkun = this.appcomponent.idAkun
   }
   
@@ -64,12 +64,16 @@ export class AnimalsPage implements OnInit {
     }
     
   }
+  classA(id:number){
+    for(let c of this.classesNew){
+      if(id==c.id){
+        return c.name
+      }
+    }
+  }
+  
   pathNotif(idAkun:number){
     return "notifications/home"
-  }
-
-  classClick(tes:string) {
-    
   }
 }
 

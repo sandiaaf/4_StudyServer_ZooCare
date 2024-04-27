@@ -37,17 +37,20 @@ export class ZoocareService {
   }
 
   classList(): Observable<any> {
-      return this.http.get("http://localhost/zoocaredb/new_account.php");
+      return this.http.get("http://localhost/zoocaredb/classes.php");
   }
 
   animalList(): Observable<any> {
     return this.http.get("http://localhost/zoocaredb/animals.php");
   }
   menuList(): Observable<any> {
-    return this.http.get("http://localhost/zoocaredb/menus.php");
+    return this.http.get("http://localhost/zoocaredb/animal_menus.php");
+  }
+  consumtionList(): Observable<any> {
+    return this.http.get("http://localhost/zoocaredb/animal_consumptions.php");
   }
   vitaminList(): Observable<any> {
-    return this.http.get("http://localhost/zoocaredb/vitamins.php");
+    return this.http.get("http://localhost/zoocaredb/animal_vitamins.php");
   }
 
   keeperList(): Observable<any> {
