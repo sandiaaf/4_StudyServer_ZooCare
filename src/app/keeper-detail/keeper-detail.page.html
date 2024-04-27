@@ -54,7 +54,7 @@
             </ion-label>
           </ion-item>
 
-          <ion-button id="btnStat" shape="round" expand="block"  size="default">Status</ion-button>
+          <ion-button id="btnStat" shape="round" expand="block"  size="default" [color]="status" (click)="getReportStatus(s.hour)">check Status</ion-button>
 
         </ion-list>
       </div>

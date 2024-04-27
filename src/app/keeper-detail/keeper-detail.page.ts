@@ -14,11 +14,11 @@ export class KeeperDetailPage implements OnInit {
   idkeeper = 0
   isHeadStr= ""
   isHead= true
+  status = "danger"
+  hour:string = ""
 
   id_activity=0
 
-
-  
   isModalOpen = false;
 
   setOpen(isOpen: boolean) {
@@ -51,22 +51,45 @@ export class KeeperDetailPage implements OnInit {
     forkJoin([
       this.zoocareservice.keeperList(),
       this.zoocareservice.animalList(),
-      this.zoocareservice.menuList()
-    ]).subscribe(([keepers, animals, menus]) => {
+      this.zoocareservice.menuList(),
+      this.zoocareservice.reportList()
+    ]).subscribe(([keepers, animals, menus, reports]) => {
       this.keepers = keepers;
       this.animals = animals;
       this.menus = menus;
+      this.reports = reports
       
       this.getAnimalNew();
-    });
+    });    
+  }
 
-    this.zoocareservice.reportList().subscribe(
-      (data) => {
-        this.reports = data
-        
-      }
-    )
+  getReportStatus(hour:string) {
+    this.status = "danger"
+    let new_hour = parseInt(hour.slice(0,2))
+    let activity = ""
+    if(new_hour >= 15){
+      activity = "MakanSore"
+    }else if(new_hour < 15 && new_hour >= 11){
+      activity = "MakanSiang"
+    }else if(new_hour <11){
+      activity = "MakanPagi"
+    }
     
+    for (let r of this.reports) {
+      if (r.user_keeper_id == this.idkeeper) {
+        for (let a of this.animals) {
+          if (r.animal_id == a.id) {
+            if (activity == r.activity_name && r.activity_finished == 1) {
+              this.status = "success"
+              return
+            }
+            else {
+              this.status = "danger"
+            }
+          }
+        }
+      }
+    }
   }
 
   getAnimalNew(){

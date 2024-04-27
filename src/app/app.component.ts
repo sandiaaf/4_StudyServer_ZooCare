@@ -28,6 +28,13 @@ export class AppComponent {
   repass = ""
   dateInterval:any
   timeInterval:any
+
+  isModalOpen = false;
+
+
+  setOpen(isOpen: boolean) {
+    this.isModalOpen = isOpen;
+  }
   
   constructor(private zoocareservice: ZoocareService,private alertController: AlertController) {
     // this.dateInterval = setInterval(

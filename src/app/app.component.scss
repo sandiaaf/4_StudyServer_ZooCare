@@ -2,6 +2,7 @@
     --background: url("/assets/login2.png") no-repeat center center / cover;
 }
 
+
 ion-tab-bar{
     --border: none;
     ---background: rgba(255,255,255,.5);
@@ -28,9 +29,9 @@ ion-input{
     --background: #eaf3ff5d;
 }
 
-ion-button{
-    color: #ffffff;
-}
+// ion-button{
+//     color: #ffffff;
+// }
 
 #signInBtn{
     --background: rgb(61, 132, 255);
@@ -39,10 +40,23 @@ ion-button{
 #signUpBtn{
     --background: rgb(61, 132, 255);
 }
+#itemLogout{
+    margin-top: 450px;
+}
 
 #logoutIcon{
     color: red;
 }
 #logoutLabel{
     color: red;
+}
+#logoutIcon1{
+    color: orange;
+}
+#logoutLabel1{
+    color: orange;
+}
+
+#btn-haveacc, #btn-nohaveacc {
+    --color: rgb(61, 132, 255);
 }

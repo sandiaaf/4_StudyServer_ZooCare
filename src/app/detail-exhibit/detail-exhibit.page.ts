@@ -14,6 +14,7 @@ export class DetailExhibitPage implements OnInit {
   idkeeper = 0
   isHeadStr= ""
   isHead= true
+  status = "danger"
 
   isModalOpen = false;
   setOpen(isOpen: boolean) {
@@ -23,6 +24,7 @@ export class DetailExhibitPage implements OnInit {
   keepers:any[]=[]
   animals:any[]=[]
   schedules:any[]=[]
+  reports:any[] = []
   constructor(private route:ActivatedRoute,private zoocareservice: ZoocareService) { }
 
   ngOnInit() {
@@ -41,13 +43,44 @@ export class DetailExhibitPage implements OnInit {
     forkJoin([
       this.zoocareservice.keeperList(),
       this.zoocareservice.animalList(),
-    ]).subscribe(([keepers, animals]) => {
+      this.zoocareservice.reportList()
+    ]).subscribe(([keepers, animals, reports]) => {
       this.keepers = keepers;
       this.animals = animals;
+      this.reports = reports
       
       this.getSchedule();
     });
+  }
+
+  getReportStatus(date:string) {
+    this.status = "danger"
+    let activity = "BersihPenangkaran"
     
+    for (let r of this.reports) {
+      if (r.user_keeper_id == this.idkeeper) {
+        for (let a of this.animals) {
+          let formattedDate = this.formatDate(a.clean_date)
+          if (r.animal_id == a.id && formattedDate == date) {
+            if (activity == r.activity_name && r.activity_finished == 1) {
+              this.status = "success"
+              return
+            }
+            else {
+              this.status = "danger"
+            }
+          }
+        }
+      }
+    }
+  }
+
+  formatDate(inputDate: string) {
+    let dates = inputDate.split(' ')[0].split('-')
+    let year = dates[0]
+    let month = parseInt(dates[1])
+    let day = parseInt(dates[2])
+    return day + "-" + month + "-" + year
   }
 
   getSchedule(){
