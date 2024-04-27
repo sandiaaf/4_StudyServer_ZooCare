@@ -78,16 +78,16 @@ export class AppComponent {
       //   clearInterval(this.timeInterval)
       // }
 
-      const scheduleTime = new Date()
-      scheduleTime.setHours(23)
-      scheduleTime.setMinutes(26)
-      scheduleTime.setSeconds(0)
-      if (currentTime >= scheduleTime) {
-        let message = "Today is cleaning day for " + animal.name + " | " + animal.species + ". At " + animal.clean_date
-        this.presentAlert(message)
-        clearInterval(this.timeInterval)
-        localStorage.setItem("app_notifications", message)
-      }
+      // const scheduleTime = new Date()
+      // scheduleTime.setHours(23)
+      // scheduleTime.setMinutes(26)
+      // scheduleTime.setSeconds(0)
+      // if (currentTime >= scheduleTime) {
+      //   let message = "Today is cleaning day for " + animal.name + " | " + animal.species + ". At " + animal.clean_date
+      //   this.presentAlert(message)
+      //   clearInterval(this.timeInterval)
+      //   localStorage.setItem("app_notifications", message)
+      // }
     })
 
     // const scheduleTime = new Date()
