@@ -1,0 +1,38 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Detail Makan</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Detail Makan</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Jadwal Makan</ion-card-title>
+    </ion-card-header>
+    <div *ngFor="let s of schedules">
+      <ion-list>
+        <ion-item>
+          <ion-label slot="start">
+            <h2>- {{s.name}}</h2>
+            <p>{{s.species}}</p>
+          </ion-label>
+          <ion-label slot="end">
+            {{s.hour}} WIB
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-input label="Url Image" labelPlacement="floating" placeholder="Enter text"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-button shape="round" size="default">Submit</ion-button>
+        </ion-item>
+      </ion-list>
+    </div>
+  </ion-card>
+
+</ion-content>
