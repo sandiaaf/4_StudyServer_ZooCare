@@ -15,7 +15,6 @@ export class KeeperDetailPage implements OnInit {
   isHead= true
 
   image=""
-  btnOpen = true
 
 
   
@@ -107,7 +106,6 @@ export class KeeperDetailPage implements OnInit {
       ).subscribe((response: any) => {
         if (response.result === 'success') {
           alert("success")
-          this.btnOpen = false
           
         }
         else {
