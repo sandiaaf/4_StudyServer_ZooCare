@@ -1,3 +1,45 @@
+#logIn{
+    --background: url("/assets/login2.png") no-repeat center center / cover;
+}
+
+ion-tab-bar{
+    --border: none;
+    ---background: rgba(255,255,255,.5);
+    margin: 16px 20px;
+    border-radius: 20px;
+    box-shadow: 0px 3px 6px 0px rgba(0,0,0,0.04),
+    0px 1px 3px 0px rgba(0,0,0,0.02);
+}
+
+ion-card{
+    border-radius: 40px;
+    position: relative;
+    --background: #ffffff;
+    --color: rgb(61, 132, 255);
+}
+
+ion-card-title{
+    font-size: 30px;
+    font-weight: bold;
+    --color:rgb(61, 132, 255);
+}
+
+ion-input{
+    --background: #eaf3ff5d;
+}
+
+ion-button{
+    color: #ffffff;
+}
+
+#signInBtn{
+    --background: rgb(61, 132, 255);
+}
+
+#signUpBtn{
+    --background: rgb(61, 132, 255);
+}
+
 #logoutIcon{
     color: red;
 }

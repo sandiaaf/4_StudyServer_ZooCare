@@ -23,7 +23,7 @@
               <ion-title>Menu List</ion-title>
           </ion-toolbar>
       </ion-header>
-      <ion-content class="ion-padding">
+      <ion-content id="nav" class="ion-padding">
           <ion-list>
               <ion-menu-toggle>
                   <ion-item routerLink="home">
@@ -52,24 +52,24 @@
           </ion-list>
       </ion-content>
   </ion-menu>
-  <ion-content *ngIf="!login" class="ion-padding">
+  <ion-content id="logIn" *ngIf="!login" class="ion-padding">
       <ion-header collapse="condense"></ion-header>
       <div *ngIf="!formSignUp">
           <div class="container">
               <ion-card class="ion-padding">
                   <ion-card-header class="ion-text-center">
-                      <ion-card-title color="primary">Sign In</ion-card-title>
+                      <ion-card-title >Sign In</ion-card-title>
                   </ion-card-header>
                   <ion-card-content class="ion-no-padding">
                       <ion-input [(ngModel)]="username" class="ion-margin-bottom" label="Username" labelPlacement="floating" fill="outline" placeholder="Enter text"></ion-input>
-                      <ion-input [(ngModel)]="pass" class="ion-margin-bottom" label="Password" labelPlacement="floating" fill="outline" placeholder="Enter text"></ion-input>
-                      <ion-input [(ngModel)]="repass" label="Retype Password" labelPlacement="floating" fill="outline" placeholder="Enter text"></ion-input>
+                      <ion-input [(ngModel)]="pass" class="ion-margin-bottom" label="Password" labelPlacement="floating" fill="outline" placeholder="Enter text" type="password"></ion-input>
+                      <ion-input [(ngModel)]="repass" label="Retype Password" labelPlacement="floating" fill="outline" placeholder="Enter text" type="password"></ion-input>
                       <ion-button class="ion-no-padding" size="small" shape="round" fill="clear" (click)="showSignUp()">
                           Don't have an account?
                       </ion-button>
                   </ion-card-content>
                   <ion-card-content class="ion-text-center">
-                      <ion-button id="signInBtn" (click)="signIn()">
+                      <ion-button shape="round" id="signInBtn" (click)="signIn()">
                           Sign In
                       </ion-button>
                   </ion-card-content>
@@ -95,14 +95,14 @@
                         <ion-select-option *ngFor="let class of classes" [value]="class.id">{{class.name}}</ion-select-option>
                       </ion-select>
                       <!-- <ion-input [(ngModel)]="img" class="ion-margin-bottom" label="Profile Picture URL" labelPlacement="floating" fill="outline" placeholder="Enter text"></ion-input> -->
-                      <ion-input [(ngModel)]="pass" class="ion-margin-bottom" label="Password" labelPlacement="floating" fill="outline" placeholder="Enter text"></ion-input>
-                      <ion-input [(ngModel)]="repass" label="Retype Password" labelPlacement="floating" fill="outline" placeholder="Enter text"></ion-input>
+                      <ion-input [(ngModel)]="pass" class="ion-margin-bottom" label="Password" labelPlacement="floating" fill="outline" placeholder="Enter text" type="password"></ion-input>
+                      <ion-input [(ngModel)]="repass" label="Retype Password" labelPlacement="floating" fill="outline" placeholder="Enter text" type="password"></ion-input>
                       <ion-button class="ion-no-padding" size="small" shape="round" fill="clear" (click)="showSignIn()">
                           Do you have an account?
                       </ion-button>
                   </ion-card-content>
                   <ion-card-content class="ion-text-center">
-                      <ion-button shape="round" (click)="signUp()">
+                      <ion-button id="signUpBtn" shape="round" (click)="signUp()">
                           Sign Up
                       </ion-button>
                   </ion-card-content>
