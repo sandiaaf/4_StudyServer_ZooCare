@@ -12,7 +12,11 @@ export class DetailExhibitPage implements OnInit {
 
   
   idkeeper = 0
-  isHead = true
+  isHeadStr= ""
+  isHead= true
+
+  alreadySubmit = false
+  image=""
 
   isModalOpen = false;
   setOpen(isOpen: boolean) {
@@ -25,6 +29,13 @@ export class DetailExhibitPage implements OnInit {
   constructor(private route:ActivatedRoute,private zoocareservice: ZoocareService) { }
 
   ngOnInit() {
+    this.isHeadStr=localStorage.getItem("app_ishead") ?? ''
+    if(this.isHeadStr== 'true'){
+      this.isHead= true
+    }else{
+      this.isHead= false
+    }
+
     this.route.params.subscribe(
       params => {
         this.idkeeper = params['idkeeper']
@@ -54,11 +65,55 @@ export class DetailExhibitPage implements OnInit {
             const minutes = date.getMinutes();
             const hours = date.getHours();
             let new_date = day+"-"+(monthIndex+1)+"-"+year
-            let new_hour = hours+":"+minutes
+
+
+            let lastChar = minutes.toString().slice(-1)
+            let new_hour = ""
+
+            console.log(lastChar)
+
+            if(parseInt(lastChar)==0 && minutes.toString().length == 1){
+              new_hour = hours+":"+minutes+"0"
+            }else{
+              new_hour = hours+":"+minutes
+            }
+
+            console.log(new_hour)
             this.schedules.push({id:a.id,name:a.name,species:a.species,clean_date:new_date,clean_hour:new_hour})
           }
         }
       }
+    }
+  }
+  submit(id_animal:number){
+    if(this.image!=""){
+      let dateTime = new Date().toJSON().slice(0, 19).replace('T', ' ');
+
+      console.log(dateTime)
+
+      let activity = "BersihPenangkaran"
+      let activity_f = 1
+
+      this.zoocareservice.addReport(
+        activity,
+        this.image,
+        activity_f,
+        dateTime,
+        this.idkeeper,
+        id_animal
+      ).subscribe((response: any) => {
+        if (response.result === 'success') {
+          alert("success")
+          this.alreadySubmit = true
+        }
+        else {
+          alert(response.message)
+        }
+      });
+      
+    }
+    else{
+
     }
   }
 

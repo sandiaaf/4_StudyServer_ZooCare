@@ -1,6 +1,9 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>Detail Makan</ion-title>
+    <ion-buttons slot="start">
+        <ion-back-button defaultHref="/keepers"></ion-back-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -24,7 +27,7 @@
             </ion-label>
             <ion-label slot="end">
               <h2>
-                {{s.hour}} WIB
+                {{s.hour.toString().slice(0,5)}} WIB
               </h2>
               <ion-label>
 
@@ -56,7 +59,7 @@
         </ion-list>
       </div>
     </div>
-    
+
     <div class="" *ngIf="!isHead">
       <div *ngFor="let s of schedules">
         <ion-list>
@@ -66,14 +69,15 @@
               <p>{{s.species}}</p>
             </ion-label>
             <ion-label slot="end">
-              {{s.hour}} WIB
+              {{s.hour.toString().slice(0,5)}} WIB
             </ion-label>
           </ion-item>
           <ion-item>
-            <ion-input label="Url Image" labelPlacement="floating" placeholder="Enter text"></ion-input>
+            <ion-input  [(ngModel)]="image" label="Url Image" labelPlacement="floating" placeholder="Enter text"></ion-input>
           </ion-item>
           <ion-item>
-            <ion-button shape="round" size="default">Submit</ion-button>
+            <ion-button *ngIf="btnOpen" shape="round" size="default" (click)="submit(s.id,s.hour)">Submit</ion-button>
+            <ion-button *ngIf="!btnOpen" shape="round"  size="default" [disabled]="true">Done</ion-button>
           </ion-item>
         </ion-list>
       </div>

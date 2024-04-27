@@ -31,6 +31,11 @@ const routes: Routes = [
     path: 'detail-exhibit/:idkeeper',
     loadChildren: () => import('./detail-exhibit/detail-exhibit.module').then( m => m.DetailExhibitPageModule)
   },
+  {
+    path: 'notification/:page',
+    loadChildren: () => import('./notification/notification.module').then( m => m.NotificationPageModule)
+  },
+
   
 
 

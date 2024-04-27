@@ -153,11 +153,12 @@ export class AppComponent {
     this.jobClass = 0
     this.pass=""
     this.repass=""
-    // this.img=""
+
+    
     localStorage.removeItem("app_login")
     localStorage.removeItem("app_id")
     localStorage.removeItem("app_username")
-    localStorage.removeItem("app_img")
+    localStorage.removeItem("app_ishead")
   }
 
   async presentAlert(msg: string) {

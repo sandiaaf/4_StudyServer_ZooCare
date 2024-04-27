@@ -1,6 +1,9 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>Detail Exhibit</ion-title>
+    <ion-buttons slot="start">
+        <ion-back-button defaultHref="/keepers"></ion-back-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -69,16 +72,18 @@
                 Tanggal : {{s.clean_date}}
               </ion-label>
               <ion-label>
-                Jam : {{s.clean_hour}}
+                Jam : {{s.clean_hour}} WIB
               </ion-label>
               
             </ion-label>
           </ion-item>
           <ion-item>
-            <ion-input label="Url Image" labelPlacement="floating" placeholder="Enter text"></ion-input>
+            <ion-input [(ngModel)]="image" label="Url Image" labelPlacement="floating" placeholder="Enter text"></ion-input>
           </ion-item>
           <ion-item>
-            <ion-button shape="round" size="default">Submit</ion-button>
+            <ion-button *ngIf="!alreadySubmit" shape="round" size="default" (click)="submit(s.id)">Submit</ion-button>
+            <ion-button *ngIf="alreadySubmit" shape="round"  size="default" [disabled]="true">Done</ion-button>
+
           </ion-item>
         </ion-list>
       </div>

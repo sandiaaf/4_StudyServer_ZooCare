@@ -11,7 +11,13 @@ import { forkJoin } from 'rxjs';
 export class KeeperDetailPage implements OnInit {
 
   idkeeper = 0
-  isHead=true
+  isHeadStr= ""
+  isHead= true
+
+  image=""
+  btnOpen = true
+
+
   
   isModalOpen = false;
 
@@ -27,6 +33,13 @@ export class KeeperDetailPage implements OnInit {
   constructor(private route:ActivatedRoute,private zoocareservice: ZoocareService) { }
 
   ngOnInit() {
+    this.isHeadStr=localStorage.getItem("app_ishead") ?? ''
+    if(this.isHeadStr== 'true'){
+      this.isHead= true
+    }else{
+      this.isHead= false
+    }
+
     this.route.params.subscribe(
       params => {
         this.idkeeper = params['idkeeper']
@@ -67,6 +80,44 @@ export class KeeperDetailPage implements OnInit {
           break
         }
       }
+    }
+  }
+  submit(id_animal:number,hour:string){
+    if(this.image!=""){
+      let dateTime = new Date().toJSON().slice(0, 19).replace('T', ' ');
+
+      let new_hour = parseInt(hour.slice(0,2)) 
+      let activity = ""
+      let activity_f = 1
+
+      if(new_hour >= 15){
+        activity = "MakanSore"
+      }else if(new_hour < 15 && new_hour >= 11){
+        activity = "MakanSiang"
+      }else if(new_hour <11){
+        activity = "MakanPagi"
+      }
+      this.zoocareservice.addReport(
+        activity,
+        this.image,
+        activity_f,
+        dateTime,
+        this.idkeeper,
+        id_animal
+      ).subscribe((response: any) => {
+        if (response.result === 'success') {
+          alert("success")
+          this.btnOpen = false
+          
+        }
+        else {
+          alert(response.message)
+        }
+      });
+      
+    }
+    else{
+
     }
   }
 

@@ -35,6 +35,22 @@ export class ZoocareService {
     return this.http.post(
       "http://localhost/zoocaredb/new_account.php", urlEncodedData, { headers });
   }
+  addReport(p_activity:string, p_image:string, p_activity_f:number, p_date:string, p_user_id:number, p_animal_id:number){
+    const headers = new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded' });
+    const body = new URLSearchParams();
+    body.set('activity_name', p_activity);
+    body.set('image', p_image);
+    body.set('activity_finished', p_activity_f.toString());
+    body.set('date_submitted', p_date);
+    body.set('user_keeper_id', p_user_id.toString());
+    body.set('animal_id', p_animal_id.toString());
+
+
+
+    const urlEncodedData = body.toString();
+    return this.http.post(
+      "http://localhost/zoocaredb/new_report.php", urlEncodedData, { headers });
+  }
 
   classList(): Observable<any> {
       return this.http.get("http://localhost/zoocaredb/classes.php");
@@ -55,6 +71,9 @@ export class ZoocareService {
 
   keeperList(): Observable<any> {
     return this.http.get("http://localhost/zoocaredb/keepers.php");
+  }
+  reportList(): Observable<any> {
+    return this.http.get("http://localhost/zoocaredb/reports.php");
   }
 
   cariAnimal(name:string): Observable<any> {
