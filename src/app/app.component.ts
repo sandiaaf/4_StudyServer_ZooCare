@@ -14,6 +14,7 @@ export class AppComponent {
   idAkun=0
   headkeepers:any[] = []
   classes:any[] = []
+  animals:any[] = []
 
   firstName = ""
   lastName = ""
@@ -25,13 +26,28 @@ export class AppComponent {
   // img = ""
   pass = ""
   repass = ""
+  dateInterval:any
+  timeInterval:any
   
   constructor(private zoocareservice: ZoocareService,private alertController: AlertController) {
+    // this.dateInterval = setInterval(
+    //   ()=> {
+    //     this.checkDate()
+    //   }, 60000 //every minute (60000 ms)
+    // )
+
+    this.timeInterval = setInterval(
+      ()=> {
+        this.checkTime()
+      }, 1000
+    )
+
     let idAkunString=localStorage.getItem("app_id") ?? ''
     this.idAkun= parseInt(idAkunString)
     this.username=localStorage.getItem("app_username") ?? ''
     // this.img=localStorage.getItem("app_img") ?? ''
   }
+
   ngOnInit(){
     // this.checkTheme()
     this.zoocareservice.get_headkeeper_data().subscribe(
@@ -44,8 +60,59 @@ export class AppComponent {
         this.classes = data
       }
     )
+    this.zoocareservice.animalList().subscribe(
+      (data)=> {
+        this.animals = data
+      }
+    )
     this.checkLogin()
   }
+
+  checkTime() {
+    const currentTime = new Date()
+
+    this.animals.forEach(animal=> {
+      // const cleanDate = new Date(animal.clean_date)
+      // if (currentTime.getHours() == cleanDate.getHours() && currentTime.getMinutes() == cleanDate.getMinutes()) {
+      //   this.presentAlert("Today is cleaning day for " + animal.name + " | " + animal.species + ". At " + animal.clean_date)
+      //   clearInterval(this.timeInterval)
+      // }
+
+      const scheduleTime = new Date()
+      scheduleTime.setHours(23)
+      scheduleTime.setMinutes(26)
+      scheduleTime.setSeconds(0)
+      if (currentTime >= scheduleTime) {
+        let message = "Today is cleaning day for " + animal.name + " | " + animal.species + ". At " + animal.clean_date
+        this.presentAlert(message)
+        clearInterval(this.timeInterval)
+        localStorage.setItem("app_notifications", message)
+      }
+    })
+
+    // const scheduleTime = new Date()
+    // scheduleTime.setHours(21)
+    // scheduleTime.setMinutes(23)
+    // scheduleTime.setSeconds(0)
+
+    // if (currentTime >= scheduleTime) {
+    //   this.presentAlert("NOTIF")
+    //   clearInterval(this.dateInterval)
+    // }
+  }
+
+  // checkDate() {
+  //   const currentDate = new Date()
+
+  //   this.animals.forEach(animal=> {
+  //     const cleanDate = new Date(animal.clean_date)
+
+  //     if (currentDate.getFullYear() == cleanDate.getFullYear() && currentDate.getMonth() == cleanDate.getMonth() && currentDate.getDate() == cleanDate.getDate()) {
+  //       this.presentAlert("Today is cleaning day for " + animal.name + " | " + animal.species + ". At " + animal.clean_date)
+  //     }
+  //   })
+  // }
+
   // checkTheme(){
   //   const validasi=localStorage.getItem("app_dark")
   //   if(validasi=="true"){
@@ -159,6 +226,7 @@ export class AppComponent {
     localStorage.removeItem("app_id")
     localStorage.removeItem("app_username")
     localStorage.removeItem("app_ishead")
+    localStorage.removeItem("app_notifications")
   }
 
   async presentAlert(msg: string) {

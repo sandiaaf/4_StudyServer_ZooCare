@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
 import { AlertController } from '@ionic/angular';
+import { ZoocareService } from '../zoocare.service';
 
 @Component({
   selector: 'app-home',
@@ -20,27 +20,19 @@ export class HomePage implements OnInit {
   sulitNapas = false
   agresif = false
 
-  constructor(private http: HttpClient, private alertController: AlertController) { }
+  constructor(private zoocareservice:ZoocareService, private alertController: AlertController) { }
 
   ngOnInit() {
-    this.guideList().subscribe(
+    this.zoocareservice.guideList().subscribe(
       (data) => {
         this.guides = data
       }
     )
-    this.guide_actionList().subscribe(
+    this.zoocareservice.guide_actionList().subscribe(
       (data) => {
         this.actions = data
       }
     )
-  }
-
-  guideList(): Observable<any> {
-    return this.http.get("http://localhost/zoocaredb/guides.php");
-  }
-
-  guide_actionList(): Observable<any> {
-    return this.http.get("http://localhost/zoocaredb/guide_actions.php");
   }
 
   checkPrognosis() {

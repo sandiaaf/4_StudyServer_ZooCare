@@ -84,6 +84,14 @@ export class ZoocareService {
 
   }
 
+  guideList(): Observable<any> {
+    return this.http.get("http://localhost/zoocaredb/guides.php");
+  }
+
+  guide_actionList(): Observable<any> {
+    return this.http.get("http://localhost/zoocaredb/guide_actions.php");
+  }
+
   get_headkeeper_data(): Observable<any> {
     return this.http.get("http://localhost/zoocaredb/get_headkeeper.php");
   }
