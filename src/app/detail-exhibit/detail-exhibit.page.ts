@@ -53,7 +53,7 @@ export class DetailExhibitPage implements OnInit {
     });
   }
 
-  getReportStatus(date:string) {
+  getReportStatus(date:string,id:number) {
     this.status = "danger"
     let activity = "BersihPenangkaran"
     
@@ -63,11 +63,11 @@ export class DetailExhibitPage implements OnInit {
           let formattedDate = this.formatDate(a.clean_date)
           if (r.animal_id == a.id && formattedDate == date) {
             if (activity == r.activity_name && r.activity_finished == 1) {
-              this.status = "success"
+              let tag = id + "e"
+              this.changeColorButtonE(tag)
               return
             }
             else {
-              this.status = "danger"
             }
           }
         }
@@ -151,6 +151,18 @@ export class DetailExhibitPage implements OnInit {
     const buttonToHide = document.getElementById(id_s.toString());
     if (buttonToHide) {
       buttonToHide.style.display = 'none';
+    }
+  }
+  changeColorButton(id_s:number) {
+    const buttonToHide = document.getElementById(id_s.toString());
+    if (buttonToHide) {
+      buttonToHide.textContent = "DONE";
+    }
+  }
+  changeColorButtonE(tagid:string) {
+    const buttonToHide = document.getElementById(tagid);
+    if (buttonToHide) {
+      buttonToHide.textContent = "DONE";
     }
   }
 

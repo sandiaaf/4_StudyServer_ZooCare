@@ -90,7 +90,6 @@ export class KeeperDetailPage implements OnInit {
               return
             }
             else {
-              this.status = "danger"
             }
           }
         }
