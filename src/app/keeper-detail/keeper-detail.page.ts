@@ -11,6 +11,8 @@ import { NavController } from '@ionic/angular';
 })
 export class KeeperDetailPage implements OnInit {
 
+  idkeeperStr = ""
+
   idkeeper = 0
   isHeadStr= ""
   isHead= true
@@ -63,9 +65,9 @@ export class KeeperDetailPage implements OnInit {
     });    
   }
 
-  getReportStatus(hour:string) {
+  getReportStatus(hour:string, id:number) {
     this.status = "danger"
-    let new_hour = parseInt(hour.slice(0,2))
+    let new_hour = parseInt(hour)
     let activity = ""
     if(new_hour >= 15){
       activity = "MakanSore"
@@ -76,11 +78,15 @@ export class KeeperDetailPage implements OnInit {
     }
     
     for (let r of this.reports) {
+      console.log(this.idkeeper)
+      console.log(r.user_keeper_id)
+
       if (r.user_keeper_id == this.idkeeper) {
+        console.log(r)
         for (let a of this.animals) {
           if (r.animal_id == a.id) {
             if (activity == r.activity_name && r.activity_finished == 1) {
-              this.status = "success"
+              this.changeColorButton(id)
               return
             }
             else {
@@ -157,6 +163,12 @@ export class KeeperDetailPage implements OnInit {
     const buttonToHide = document.getElementById(id_s.toString());
     if (buttonToHide) {
       buttonToHide.style.display = 'none';
+    }
+  }
+  changeColorButton(id_s:number) {
+    const buttonToHide = document.getElementById(id_s.toString());
+    if (buttonToHide) {
+      buttonToHide.textContent = "DONE";
     }
   }
 

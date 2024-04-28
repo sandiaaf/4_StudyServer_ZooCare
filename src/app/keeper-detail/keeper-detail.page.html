@@ -44,7 +44,7 @@
                     </ion-header>
                     <ion-content class="ion-padding">
                       <div class="image">
-                        <img src="https://www.borneonews.co.id/images/upload/2022/06/26/1656220467-untitled-1.jpg" alt="">
+                        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjsEFelnYs6LJtm67Oed6Yv0D44ogfF1nqW1HPZE2iGeS0q2FWX8xXuMbSYKFBZxNaI3NuG1Xe-LtkmRLo_ja4ED07trtPfniBph2vegcxw_LkZsDSOcVtstkKSV0KGecTGjxnnCoI5rDg/s1600/Pegang+buaya+di+Blanakan..jpg" alt="">
                       </div>
                     </ion-content>
                   </ng-template>
@@ -54,7 +54,7 @@
             </ion-label>
           </ion-item>
 
-          <ion-button id="btnStat" shape="round" expand="block"  size="default" [color]="status" (click)="getReportStatus(s.hour)">check Status</ion-button>
+          <ion-button id="{{s.id}}" shape="round" expand="block"  size="default" (click)="getReportStatus(s.hour,s.id)">check Status</ion-button>
 
         </ion-list>
       </div>
