@@ -86,8 +86,8 @@ export class AppComponent {
       // }
 
       // const scheduleTime = new Date()
-      // scheduleTime.setHours(23)
-      // scheduleTime.setMinutes(26)
+      // scheduleTime.setHours(8)
+      // scheduleTime.setMinutes(7)
       // scheduleTime.setSeconds(0)
       // if (currentTime >= scheduleTime) {
       //   let message = "Today is cleaning day for " + animal.name + " | " + animal.species + ". At " + animal.clean_date
@@ -233,7 +233,7 @@ export class AppComponent {
     localStorage.removeItem("app_id")
     localStorage.removeItem("app_username")
     localStorage.removeItem("app_ishead")
-    localStorage.removeItem("app_notifications")
+    // localStorage.removeItem("app_notifications")
   }
 
   async presentAlert(msg: string) {
